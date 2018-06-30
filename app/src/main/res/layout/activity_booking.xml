@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/halfNine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="56dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="72dp"
+        android:text="9:30"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <TextView
+        android:id="@+id/halfTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="10:30"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/halfNine"
+        app:layout_constraintTop_toBottomOf="@+id/halfNine" />
+
+    <TextView
+        android:id="@+id/halfSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="18:30"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/quarterFive"
+        app:layout_constraintTop_toBottomOf="@+id/quarterFive" />
+
+    <TextView
+        android:id="@+id/quarterFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="17:15"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/halfTen"
+        app:layout_constraintTop_toBottomOf="@+id/halfTen" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="225dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="12/05/2018"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/paxHalfNine"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:gravity="right"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/halfNine"
+        app:layout_constraintStart_toEndOf="@+id/halfNine"
+        app:layout_constraintTop_toTopOf="@+id/halfNine" />
+
+    <TextView
+        android:id="@+id/paxHalfTen"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:gravity="right"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/halfTen"
+        app:layout_constraintStart_toEndOf="@+id/halfTen"
+        app:layout_constraintTop_toTopOf="@+id/halfTen" />
+
+    <TextView
+        android:id="@+id/paxQuarterFive"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:gravity="right"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quarterFive"
+        app:layout_constraintStart_toEndOf="@+id/quarterFive"
+        app:layout_constraintTop_toTopOf="@+id/quarterFive" />
+
+    <TextView
+        android:id="@+id/paxHalfSix"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:gravity="right"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/halfSix"
+        app:layout_constraintStart_toEndOf="@+id/halfSix"
+        app:layout_constraintTop_toTopOf="@+id/halfSix" />
+
+    <ImageButton
+        android:id="@+id/addHalfNine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/paxHalfNine"
+        app:layout_constraintStart_toEndOf="@+id/paxHalfNine"
+        app:layout_constraintTop_toTopOf="@+id/paxHalfNine"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/addHalfTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/paxHalfTen"
+        app:layout_constraintStart_toEndOf="@+id/paxHalfTen"
+        app:layout_constraintTop_toTopOf="@+id/paxHalfTen"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/addQuarterFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/paxQuarterFive"
+        app:layout_constraintStart_toEndOf="@+id/paxQuarterFive"
+        app:layout_constraintTop_toTopOf="@+id/paxQuarterFive"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/addHalfSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/paxHalfSix"
+        app:layout_constraintStart_toEndOf="@+id/paxHalfSix"
+        app:layout_constraintTop_toTopOf="@+id/paxHalfSix"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/quotaHalfNine"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addHalfNine"
+        app:layout_constraintStart_toEndOf="@+id/addHalfNine"
+        app:layout_constraintTop_toTopOf="@+id/addHalfNine" />
+
+    <TextView
+        android:id="@+id/quotaHalfTen"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addHalfTen"
+        app:layout_constraintStart_toEndOf="@+id/addHalfTen"
+        app:layout_constraintTop_toTopOf="@+id/addHalfTen" />
+
+    <TextView
+        android:id="@+id/quotaQuarterFive"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addQuarterFive"
+        app:layout_constraintStart_toEndOf="@+id/addQuarterFive"
+        app:layout_constraintTop_toTopOf="@+id/addQuarterFive" />
+
+    <TextView
+        android:id="@+id/quotaHalfSix"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addHalfSix"
+        app:layout_constraintStart_toEndOf="@+id/addHalfSix"
+        app:layout_constraintTop_toTopOf="@+id/addHalfSix" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="77dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/checkbox_on_background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Plazas"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/quotaHalfNine"
+        app:layout_constraintEnd_toEndOf="@+id/quotaHalfNine"
+        app:layout_constraintStart_toStartOf="@+id/quotaHalfNine" />
+
+</android.support.constraint.ConstraintLayout>
