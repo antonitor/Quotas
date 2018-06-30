@@ -1,6 +1,9 @@
 package com.tonietorres.formenteraquotas;
 
 import android.app.DatePickerDialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,7 +16,8 @@ import android.widget.TextView;
 
 import com.tonietorres.formenteraquotas.data.QuotaContact.DaysTable;
 import com.tonietorres.formenteraquotas.data.QuotaDbHelper;
-import com.tonietorres.formenteraquotas.utils.DatePickerFragment;
+import com.tonietorres.formenteraquotas.dialogs.DatePickerFragment;
+import com.tonietorres.formenteraquotas.dialogs.NewBookingFragment;
 
 import java.util.Calendar;
 
@@ -104,6 +108,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void newBooking(View view) {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        DialogFragment dialogFragment = NewBookingFragment.newInstance(null);
+        dialogFragment.show(ft, "dialog");
     }
 
     private void testField(){

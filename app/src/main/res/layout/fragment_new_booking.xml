@@ -10,11 +10,13 @@
         android:id="@+id/halfNine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="72dp"
         android:text="9:30"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/date"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
     <TextView
@@ -58,8 +60,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="12-08-2018"
+        android:layout_marginTop="16dp"
+        android:text="12/05/2018"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,58 +116,49 @@
         app:layout_constraintStart_toEndOf="@+id/halfSix"
         app:layout_constraintTop_toTopOf="@+id/halfSix" />
 
-    <TextView
-        android:id="@+id/textView10"
+    <ImageButton
+        android:id="@+id/addHalfNine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="/"
-        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/paxHalfNine"
         app:layout_constraintStart_toEndOf="@+id/paxHalfNine"
-        app:layout_constraintTop_toTopOf="@+id/paxHalfNine" />
+        app:layout_constraintTop_toTopOf="@+id/paxHalfNine"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
-        android:id="@+id/textView11"
+    <ImageButton
+        android:id="@+id/addHalfTen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="/"
-        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/paxHalfTen"
         app:layout_constraintStart_toEndOf="@+id/paxHalfTen"
         app:layout_constraintTop_toTopOf="@+id/paxHalfTen"
-        app:layout_constraintVertical_bias="0.888" />
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
-        android:id="@+id/textView12"
+    <ImageButton
+        android:id="@+id/addQuarterFive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="/"
-        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/paxQuarterFive"
         app:layout_constraintStart_toEndOf="@+id/paxQuarterFive"
-        app:layout_constraintTop_toTopOf="@+id/paxQuarterFive" />
+        app:layout_constraintTop_toTopOf="@+id/paxQuarterFive"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
-        android:id="@+id/textView13"
+    <ImageButton
+        android:id="@+id/addHalfSix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="/"
-        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/paxHalfSix"
         app:layout_constraintStart_toEndOf="@+id/paxHalfSix"
-        app:layout_constraintTop_toTopOf="@+id/paxHalfSix" />
+        app:layout_constraintTop_toTopOf="@+id/paxHalfSix"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
         android:id="@+id/quotaHalfNine"
@@ -175,11 +168,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintBottom_toBottomOf="@+id/addHalfNine"
+        app:layout_constraintStart_toEndOf="@+id/addHalfNine"
+        app:layout_constraintTop_toTopOf="@+id/addHalfNine" />
 
     <TextView
         android:id="@+id/quotaHalfTen"
@@ -189,11 +182,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintBottom_toBottomOf="@+id/addHalfTen"
+        app:layout_constraintStart_toEndOf="@+id/addHalfTen"
+        app:layout_constraintTop_toTopOf="@+id/addHalfTen" />
 
     <TextView
         android:id="@+id/quotaQuarterFive"
@@ -203,11 +196,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        app:layout_constraintBottom_toBottomOf="@+id/addQuarterFive"
+        app:layout_constraintStart_toEndOf="@+id/addQuarterFive"
+        app:layout_constraintTop_toTopOf="@+id/addQuarterFive" />
 
     <TextView
         android:id="@+id/quotaHalfSix"
@@ -217,33 +210,36 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+        app:layout_constraintBottom_toBottomOf="@+id/addHalfSix"
+        app:layout_constraintStart_toEndOf="@+id/addHalfSix"
+        app:layout_constraintTop_toTopOf="@+id/addHalfSix" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="77dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="64dp"
-        android:layout_marginLeft="108dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:onClick="newBooking"/>
+        app:srcCompat="@android:drawable/checkbox_on_background" />
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="71dp"
-        android:layout_height="68dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="@+id/imageButton2"
-        app:srcCompat="?android:attr/actionModeCutDrawable" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Plazas"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/quotaHalfNine"
+        app:layout_constraintEnd_toEndOf="@+id/quotaHalfNine"
+        app:layout_constraintStart_toStartOf="@+id/quotaHalfNine" />
 
 </android.support.constraint.ConstraintLayout>

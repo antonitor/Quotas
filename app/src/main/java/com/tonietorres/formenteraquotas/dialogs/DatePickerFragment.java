@@ -1,4 +1,4 @@
-package com.tonietorres.formenteraquotas.utils;
+package com.tonietorres.formenteraquotas.dialogs;
 
 
 import android.app.DatePickerDialog;
