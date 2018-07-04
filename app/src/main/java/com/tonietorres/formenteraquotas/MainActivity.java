@@ -21,18 +21,22 @@ import com.tonietorres.formenteraquotas.dialogs.NewBookingFragment;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NewBookingFragment.OnCompleteListener {
 
     private SQLiteDatabase mDb;
-    TextView tvFecha;
-    TextView paxHalfNine;
-    TextView paxHalfTen;
-    TextView paxQuarterFive;
-    TextView paxHalfSix;
-    TextView quotaHalfNine;
-    TextView quotaHalfTen;
-    TextView quotaQuarterFive;
-    TextView quotaHalfSix;
+    private TextView tvFecha;
+    private TextView paxHalfNine;
+    private TextView paxHalfTen;
+    private TextView paxQuarterFive;
+    private TextView paxHalfSix;
+    private TextView quotaHalfNine;
+    private TextView quotaHalfTen;
+    private TextView quotaQuarterFive;
+    private TextView quotaHalfSix;
+    private int leftNine;
+    private int leftTen;
+    private int leftFive;
+    private int leftSix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         QuotaDbHelper quotaDbHelper = new QuotaDbHelper(this);
         mDb = quotaDbHelper.getWritableDatabase();
-        testField();
         newDataBase();
         paxHalfNine = findViewById(R.id.paxHalfNine);
         paxHalfTen = findViewById(R.id.paxHalfTen);
@@ -77,14 +80,28 @@ public class MainActivity extends AppCompatActivity {
 
         if (cursor.moveToFirst()) {
             Log.d("DATE", fecha + " FOUND");
-            paxHalfNine.setText(cursor.getString(cursor.getColumnIndex(DaysTable.PAX_HALF_NINE_COLUMN)));
-            paxHalfTen.setText(cursor.getString(cursor.getColumnIndex(DaysTable.PAX_HALF_TEN_COLUMN)));
-            paxQuarterFive.setText(cursor.getString(cursor.getColumnIndex(DaysTable.PAX_QUARTER_FIVE_COLUMN)));
-            paxHalfSix.setText(cursor.getString(cursor.getColumnIndex(DaysTable.PAX_HALF_SIX_COLUMN)));
-            quotaHalfNine.setText(cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_HALF_NINE_COLUMN)));
-            quotaHalfTen.setText(cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_HALF_TEN_COLUMN)));
-            quotaQuarterFive.setText(cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_QUARTER_FIVE_COLUMN)));
-            quotaHalfSix.setText(cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_HALF_SIX_COLUMN)));
+            String paxNine = cursor.getString(cursor.getColumnIndex(DaysTable.PAX_HALF_NINE_COLUMN));
+            String paxTen =cursor.getString(cursor.getColumnIndex(DaysTable.PAX_HALF_TEN_COLUMN));
+            String paxFive = cursor.getString(cursor.getColumnIndex(DaysTable.PAX_QUARTER_FIVE_COLUMN));
+            String paxSix = cursor.getString(cursor.getColumnIndex(DaysTable.PAX_HALF_SIX_COLUMN));
+            String quotaNine = cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_HALF_NINE_COLUMN));
+            String quotaTen = cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_HALF_TEN_COLUMN));
+            String quotaFive = cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_QUARTER_FIVE_COLUMN));
+            String quotaSix = cursor.getString(cursor.getColumnIndex(DaysTable.QUOTA_HALF_SIX_COLUMN));
+
+            leftNine = (new Integer(quotaNine)) - (new Integer(paxNine));
+            leftTen = (new Integer(quotaTen)) - (new Integer(paxTen));
+            leftFive = (new Integer(quotaFive) - (new Integer(paxFive)));
+            leftSix = (new Integer(quotaSix) - (new Integer(paxSix)));
+
+            paxHalfNine.setText(paxNine);
+            paxHalfTen.setText(paxTen);
+            paxQuarterFive.setText(paxFive);
+            paxHalfSix.setText(paxSix);
+            quotaHalfNine.setText(quotaNine);
+            quotaHalfTen.setText(quotaTen);
+            quotaQuarterFive.setText(quotaFive);
+            quotaHalfSix.setText(quotaSix);
         } else {
             Log.d("DATE", fecha + " NOT FOUND");
         }
@@ -118,15 +135,31 @@ public class MainActivity extends AppCompatActivity {
         }
         ft.addToBackStack(null);
 
-        DialogFragment dialogFragment = NewBookingFragment.newInstance(null);
+        DialogFragment dialogFragment = NewBookingFragment.newInstance(null, tvFecha.getText().toString(), leftNine, leftTen, leftFive, leftSix);
         dialogFragment.show(ft, "dialog");
     }
 
-    private void testField(){
+    @Override
+    public void onCompleteBooking(String fecha, String paxNine, String paxTen, String paxFive, String paxSix) {
+        if (paxNine==null && paxTen==null && paxFive==null && paxSix==null) {
+            return;
+        }
+
         ContentValues cv = new ContentValues();
-        cv.put(DaysTable.PAX_QUARTER_FIVE_COLUMN, 99);
-        mDb.update(DaysTable.TABLE_NAME,cv,DaysTable.DATE_COLUMN+"=?",new String[]{"8-5-2018"});
+        if (paxNine!=null)
+            cv.put(DaysTable.PAX_HALF_NINE_COLUMN, (new Integer(this.paxHalfNine.getText().toString())+new Integer(paxNine))+"");
+        if (paxTen!=null)
+            cv.put(DaysTable.PAX_HALF_TEN_COLUMN, (new Integer(this.paxHalfTen.getText().toString())+new Integer(paxTen))+"");
+        if (paxFive!=null)
+            cv.put(DaysTable.PAX_QUARTER_FIVE_COLUMN, (new Integer(this.paxQuarterFive.getText().toString())+new Integer(paxFive))+"");
+        if (paxSix!=null)
+            cv.put(DaysTable.PAX_HALF_SIX_COLUMN, (new Integer(this.paxHalfSix.getText().toString())+new Integer(paxSix))+"");
+
+        mDb.update(DaysTable.TABLE_NAME, cv, DaysTable.DATE_COLUMN+"=?", new String[]{fecha});
+
+        populateFields(fecha);
     }
+
 
     private void newDataBase() {
         Cursor cursor = mDb.query(
@@ -161,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 
 }
