@@ -2,9 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity"
+    android:clickable="true">
+
 
     <TextView
         android:id="@+id/halfNine"
@@ -12,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="9:30"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="24sp"
@@ -57,69 +60,80 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="12/05/2018"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="46sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/paxHalfNine"
         android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:gravity="right|center_vertical"
-        android:textSize="24sp"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="numberSigned"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/halfNine"
         app:layout_constraintStart_toEndOf="@+id/halfNine"
-        app:layout_constraintTop_toTopOf="@+id/halfNine" />
+        app:layout_constraintTop_toTopOf="@+id/halfNine"
+        android:selectAllOnFocus="true"/>
 
-    <TextView
+    <EditText
         android:id="@+id/paxHalfTen"
         android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:gravity="right|center_vertical"
-        android:textSize="24sp"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="numberSigned"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/halfTen"
         app:layout_constraintStart_toEndOf="@+id/halfTen"
-        app:layout_constraintTop_toTopOf="@+id/halfTen" />
+        app:layout_constraintTop_toTopOf="@+id/halfTen"
+        android:selectAllOnFocus="true"/>
 
-    <TextView
+    <EditText
         android:id="@+id/paxQuarterFive"
         android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:gravity="right|center_vertical"
-        android:textSize="24sp"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="numberSigned"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/quarterFive"
         app:layout_constraintStart_toEndOf="@+id/quarterFive"
-        app:layout_constraintTop_toTopOf="@+id/quarterFive" />
+        app:layout_constraintTop_toTopOf="@+id/quarterFive"
+        android:selectAllOnFocus="true"/>
 
-    <TextView
+    <EditText
         android:id="@+id/paxHalfSix"
         android:layout_width="40dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:gravity="right|center_vertical"
-        android:textSize="24sp"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="numberSigned"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/halfSix"
         app:layout_constraintStart_toEndOf="@+id/halfSix"
-        app:layout_constraintTop_toTopOf="@+id/halfSix" />
+        app:layout_constraintTop_toTopOf="@+id/halfSix"
+        android:selectAllOnFocus="true"/>
 
     <ImageButton
         android:id="@+id/addHalfNine"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/quotaHalfNine"
         app:layout_constraintStart_toEndOf="@+id/quotaHalfNine"
@@ -130,8 +144,8 @@
         android:id="@+id/addHalfTen"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/quotaHalfTen"
         app:layout_constraintStart_toEndOf="@+id/quotaHalfTen"
@@ -142,8 +156,8 @@
         android:id="@+id/addQuarterFive"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/quotaQuarterFive"
         app:layout_constraintStart_toEndOf="@+id/quotaQuarterFive"
@@ -154,8 +168,8 @@
         android:id="@+id/addHalfSix"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/quotaHalfSix"
         app:layout_constraintStart_toEndOf="@+id/quotaHalfSix"
@@ -252,11 +266,13 @@
 
     <ImageButton
         android:id="@+id/completeBooking"
-        android:layout_width="77dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/halfSix"
         app:srcCompat="@drawable/ic_check_black_24dp" />

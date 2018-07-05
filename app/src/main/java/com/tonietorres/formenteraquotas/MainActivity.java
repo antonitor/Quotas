@@ -1,9 +1,6 @@
 package com.tonietorres.formenteraquotas;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements NewBookingFragmen
     private int leftTen;
     private int leftFive;
     private int leftSix;
+
+    private NewBookingFragment newBookingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,36 +127,54 @@ public class MainActivity extends AppCompatActivity implements NewBookingFragmen
     }
 
     public void newBooking(View view) {
+
+
+        newBookingFragment = NewBookingFragment.newInstance(this, tvFecha.getText().toString(), leftNine, leftTen, leftFive, leftSix);
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction()
+                .add(R.id.new_booking_fragment_container, newBookingFragment)
+                .commit();
+
+
+
+/**
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment prev = getFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-
-        DialogFragment dialogFragment = NewBookingFragment.newInstance(null, tvFecha.getText().toString(), leftNine, leftTen, leftFive, leftSix);
+        DialogFragment dialogFragment = NewBookingFragment.newInstance(this, tvFecha.getText().toString(), leftNine, leftTen, leftFive, leftSix);
         dialogFragment.show(ft, "dialog");
+ **/
+
     }
 
     @Override
     public void onCompleteBooking(String fecha, String paxNine, String paxTen, String paxFive, String paxSix) {
-        if (paxNine==null && paxTen==null && paxFive==null && paxSix==null) {
-            return;
+        if (!(paxNine==null && paxTen==null && paxFive==null && paxSix==null)) {
+            ContentValues cv = new ContentValues();
+            if (paxNine != null && paxNine.length()>0)
+                cv.put(DaysTable.PAX_HALF_NINE_COLUMN, (Integer.valueOf(this.paxHalfNine.getText().toString()) + Integer.valueOf(paxNine)) + "");
+            if (paxTen != null && paxTen.length()>0)
+                cv.put(DaysTable.PAX_HALF_TEN_COLUMN, (Integer.valueOf(this.paxHalfTen.getText().toString()) + Integer.valueOf(paxTen)) + "");
+            if (paxFive != null && paxFive.length()>0)
+                cv.put(DaysTable.PAX_QUARTER_FIVE_COLUMN, (Integer.valueOf(this.paxQuarterFive.getText().toString()) + Integer.valueOf(paxFive)) + "");
+            if (paxSix != null && paxSix.length()>0)
+                cv.put(DaysTable.PAX_HALF_SIX_COLUMN, (Integer.valueOf(this.paxHalfSix.getText().toString()) + Integer.valueOf(paxSix)) + "");
+
+            mDb.update(DaysTable.TABLE_NAME, cv, DaysTable.DATE_COLUMN + "=?", new String[]{fecha});
         }
-
-        ContentValues cv = new ContentValues();
-        if (paxNine!=null)
-            cv.put(DaysTable.PAX_HALF_NINE_COLUMN, (new Integer(this.paxHalfNine.getText().toString())+new Integer(paxNine))+"");
-        if (paxTen!=null)
-            cv.put(DaysTable.PAX_HALF_TEN_COLUMN, (new Integer(this.paxHalfTen.getText().toString())+new Integer(paxTen))+"");
-        if (paxFive!=null)
-            cv.put(DaysTable.PAX_QUARTER_FIVE_COLUMN, (new Integer(this.paxQuarterFive.getText().toString())+new Integer(paxFive))+"");
-        if (paxSix!=null)
-            cv.put(DaysTable.PAX_HALF_SIX_COLUMN, (new Integer(this.paxHalfSix.getText().toString())+new Integer(paxSix))+"");
-
-        mDb.update(DaysTable.TABLE_NAME, cv, DaysTable.DATE_COLUMN+"=?", new String[]{fecha});
-
         populateFields(fecha);
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction()
+                .remove(newBookingFragment)
+                .commit();
     }
 
 

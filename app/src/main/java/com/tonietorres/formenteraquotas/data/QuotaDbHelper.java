@@ -11,7 +11,7 @@ public class QuotaDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "quotaformentera.db";
 
     // If you change the database schema, you must increment the database version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     // Constructor
     public QuotaDbHelper(Context context) {
