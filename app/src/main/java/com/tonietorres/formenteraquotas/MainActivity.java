@@ -2,6 +2,7 @@ package com.tonietorres.formenteraquotas;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.tonietorres.formenteraquotas.data.QuotaContact.DaysTable;
+import com.tonietorres.formenteraquotas.data.QuotaContact.RegistroTable;
 import com.tonietorres.formenteraquotas.data.QuotaDbHelper;
 import com.tonietorres.formenteraquotas.dialogs.DatePickerFragment;
 import com.tonietorres.formenteraquotas.dialogs.NewBookingFragment;
@@ -19,6 +21,8 @@ import com.tonietorres.formenteraquotas.dialogs.NewBookingFragment;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements NewBookingFragment.OnCompleteListener {
+
+    private static final String LOGIN = "admin";
 
     private SQLiteDatabase mDb;
     private TextView tvFecha;
@@ -64,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements NewBookingFragmen
         String fecha = tvFecha.getText().toString();
 
         populateFields(fecha);
+    }
+
+    public void registro(View view) {
+        Intent intent = new Intent(this, Registro.class);
+        startActivity(intent);
     }
 
     private void populateFields(String fecha) {
@@ -137,36 +146,33 @@ public class MainActivity extends AppCompatActivity implements NewBookingFragmen
                 .add(R.id.new_booking_fragment_container, newBookingFragment)
                 .commit();
 
-
-
-/**
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment dialogFragment = NewBookingFragment.newInstance(this, tvFecha.getText().toString(), leftNine, leftTen, leftFive, leftSix);
-        dialogFragment.show(ft, "dialog");
- **/
-
     }
 
     @Override
     public void onCompleteBooking(String fecha, String paxNine, String paxTen, String paxFive, String paxSix) {
         if (!(paxNine==null && paxTen==null && paxFive==null && paxSix==null)) {
             ContentValues cv = new ContentValues();
-            if (paxNine != null && paxNine.length()>0)
-                cv.put(DaysTable.PAX_HALF_NINE_COLUMN, (Integer.valueOf(this.paxHalfNine.getText().toString()) + Integer.valueOf(paxNine)) + "");
-            if (paxTen != null && paxTen.length()>0)
-                cv.put(DaysTable.PAX_HALF_TEN_COLUMN, (Integer.valueOf(this.paxHalfTen.getText().toString()) + Integer.valueOf(paxTen)) + "");
-            if (paxFive != null && paxFive.length()>0)
-                cv.put(DaysTable.PAX_QUARTER_FIVE_COLUMN, (Integer.valueOf(this.paxQuarterFive.getText().toString()) + Integer.valueOf(paxFive)) + "");
-            if (paxSix != null && paxSix.length()>0)
-                cv.put(DaysTable.PAX_HALF_SIX_COLUMN, (Integer.valueOf(this.paxHalfSix.getText().toString()) + Integer.valueOf(paxSix)) + "");
-
+            ContentValues registroCv = new ContentValues();
+            if (paxNine != null && paxNine.length()>0) {
+                cv.put(DaysTable.PAX_HALF_NINE_COLUMN, (Integer.valueOf(this.paxHalfNine.getText().toString()) + Integer.valueOf(paxNine)));
+                registroCv.put(RegistroTable.PAX_HALF_NINE_COLUMN, (Integer.valueOf(this.paxHalfNine.getText().toString()) + Integer.valueOf(paxNine)));
+            }
+            if (paxTen != null && paxTen.length()>0) {
+                cv.put(DaysTable.PAX_HALF_TEN_COLUMN, (Integer.valueOf(this.paxHalfTen.getText().toString()) + Integer.valueOf(paxTen)));
+                registroCv.put(RegistroTable.PAX_HALF_TEN_COLUMN, (Integer.valueOf(this.paxHalfTen.getText().toString()) + Integer.valueOf(paxTen)));
+            }
+            if (paxFive != null && paxFive.length()>0) {
+                cv.put(DaysTable.PAX_QUARTER_FIVE_COLUMN, (Integer.valueOf(this.paxQuarterFive.getText().toString()) + Integer.valueOf(paxFive)));
+                registroCv.put(RegistroTable.PAX_QUARTER_FIVE_COLUMN, (Integer.valueOf(this.paxQuarterFive.getText().toString()) + Integer.valueOf(paxFive)));
+            }
+            if (paxSix != null && paxSix.length()>0) {
+                cv.put(DaysTable.PAX_HALF_SIX_COLUMN, (Integer.valueOf(this.paxHalfSix.getText().toString()) + Integer.valueOf(paxSix)));
+                registroCv.put(RegistroTable.PAX_HALF_SIX_COLUMN, (Integer.valueOf(this.paxHalfSix.getText().toString()) + Integer.valueOf(paxSix)));
+            }
+            registroCv.put(RegistroTable.DATE_COLUMN, fecha);
+            registroCv.put(RegistroTable.LOGIN_COLUMN, LOGIN);
             mDb.update(DaysTable.TABLE_NAME, cv, DaysTable.DATE_COLUMN + "=?", new String[]{fecha});
+            mDb.insert(RegistroTable.TABLE_NAME, null, registroCv);
         }
         populateFields(fecha);
 

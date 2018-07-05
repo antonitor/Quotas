@@ -236,7 +236,7 @@
         android:onClick="newBooking"/>
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/registro"
         android:layout_width="71dp"
         android:layout_height="68dp"
         android:layout_marginLeft="24dp"
@@ -244,7 +244,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="@+id/imageButton2"
-        app:srcCompat="?android:attr/actionModeCutDrawable" />
+        app:srcCompat="?android:attr/actionModeCutDrawable"
+        android:onClick="registro"/>
 
     <FrameLayout
         android:id="@+id/new_booking_fragment_container"
